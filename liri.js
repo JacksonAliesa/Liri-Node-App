@@ -25,59 +25,73 @@ for (var i = 3; i < userRequest.length; i++) {
 
 switch (action) {
 	case 'concert-this':
-        console.log('command: ' + action);
-        console.log('Search: ' + userSearch);
-        
+		console.log('command: ' + action);
+		console.log('Search: ' + userSearch);
+		concertInfo();
 		break;
+
 	case 'movie-this':
-        console.log('command: ' + action);
-        console.log('Search: ' + userSearch);
-        //need if else statement to tell user to insert valid movie title
-        // if (userRequest === userSearch){
-        //     userMovie();
-        // }
-        // else{
-        //     console.log('Insert Valid Movie Name')
-        // }
-        userMovie();
-    
+		console.log('command: ' + action);
+		console.log('Search: ' + userSearch);
+		// need if else statement to tell user to insert valid movie title
+		// if (userRequest === userSearch){
+		//     userMovie();
+		// }
+		// else{
+		//     console.log('Insert Valid Movie Name')
+		// }
+		userMovie();
+
 		break;
+
 	case 'spotfiy-this-song':
-        console.log('command: ' + action);
-        console.log('Search: ' + userSearch);
+		console.log('command: ' + action);
+		console.log('Search: ' + userSearch);
+
 		break;
+
 	case 'do-what-it-is':
-        console.log('command: ' + action);
-        console.log('Search: ' + userSearch);
-        break;
-        
-        default:
-            console.log("This is not a valid entry!")
+		console.log('command: ' + action);
+		console.log('Search: ' + userSearch);
+		break;
+
+	default:
+		console.log('Try Again!');
 }
 
+function userMovie() {
+	//inject the users search term in the queryURL
+	// Then run a request with axios to the OMDB API with the movie specified
+	var queryUrl = 'http://www.omdbapi.com/?t=' + userSearch + '&y=&plot=short&apikey=trilogy';
+	console.log(queryUrl);
 
-function userMovie(){
-//inject the users search term in the queryURL
-// Then run a request with axios to the OMDB API with the movie specified
-var queryUrl = 'http://www.omdbapi.com/?t=' + userSearch + '&y=&plot=short&apikey=trilogy';
-console.log(queryUrl);
-
-// retrieves the requested data from OMDB
-axios.get(queryUrl).then(function(response) {
-    console.log('Title: ' + response.data.Title);
-    console.log('Release Year: ' + response.data.Year);
-    console.log('IMDB Rating: ' + response.data.imdbRating + "/10");
-    console.log('Rotten Tomatoes Rating: ' + response.data.Ratings[1].Value);
-    console.log('Country: ' + response.data.Country);
-    console.log('Language: ' + response.data.Language);
-    console.log('Plot: ' + response.data.Plot);
-    console.log('Actors: ' + response.data.Actors);  
-});
+	// retrieves the requested data from OMDB
+	axios.get(queryUrl).then(function(response) {
+		console.log('Title: ' + response.data.Title);
+		console.log('Release Year: ' + response.data.Year);
+		console.log('IMDB Rating: ' + response.data.imdbRating + '/10');
+		console.log('Rotten Tomatoes Rating: ' + response.data.Ratings[1].Value);
+		console.log('Country: ' + response.data.Country);
+		console.log('Language: ' + response.data.Language);
+		console.log('Plot: ' + response.data.Plot);
+		console.log('Actors: ' + response.data.Actors);
+	});
 }
 
-//display the name of venue, venue location, and date of event
+function concertInfo() {
+	var queryUrl = 'https://rest.bandsintown.com/artists/' + userSearch + '/events?app_id=codingbootcamp';
+	console.log(queryUrl);
 
-//format the date of the event to be MM/DD/YYYY
+	// retrieves the requested data from bands in town API
+	axios.get(queryUrl).then(function(response) {
+		console.log(response.data);
+        //display the name of venue, venue location, and date of event
+        //format the date of the event to be MM/DD/YYYY
+        console.log(response.offers.venue.name);
+		
+		// console.log(response.data.datetime);
+	});
+}
 
 //check if userCommand
 
