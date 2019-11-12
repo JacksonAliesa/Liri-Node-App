@@ -20,6 +20,8 @@ This application runs based off of a user's input. The user's input consists of 
 The insert of "node" is indicating that we are using nodeJS. The document file name is where the actual javascript code is written for the applcation. There are three different "actions" the user can choose from to show results from 3 API's including,Spotify, OMDB, & BandsInTown. The three different actions set for this application are spotify-this-song, movie-this,concert-this. These actions will trigger which API to read from. Depending on which action the user chooses will dictate what the search term will be. 
 
 For example, if I wanted to search Beyonce using the spotify-this-song action I would insert...(See Below)
+"node liri.js spotify-this-song beyonce"
+![alt text](assets/screenshot1.png "Example")
 
 
 Technologies Used: 
