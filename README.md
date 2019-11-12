@@ -2,7 +2,7 @@
 
 What is "LiriBot"?
 
-LiriBot is an application that a user can use through a computer terminal, by using actions to request information, using different NPM packages(axios, dotenv, moment, and node-spotify-api) that retrieve data from API's with the assistance of nodeJS.
+LiriBot is an application that allows a user to insert a request through a computer terminal, by using actions to request information, using different NPM packages(axios, dotenv, moment, and node-spotify-api) that retrieves data from API's with the assistance of nodeJS.
 
 
 
@@ -22,7 +22,7 @@ The insert of "node" is indicating that we are using nodeJS. The document file n
 
 For example, if I wanted to search Beyonce using the spotify-this-song action I would insert...(See Below)
 "node liri.js spotify-this-song beyonce"
-![alt text](assets/screenshot1.png "Example")
+[alt text](assets/screenshot1.png "Example")
 
 
 Technologies Used: 
