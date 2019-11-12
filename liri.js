@@ -64,6 +64,7 @@ switch (action) {
 	case 'do-what-it-says':
 		console.log('command: ' + action);
 		console.log('Search: ' + userSearch);
+		dowhatitSays(userSearch);
 		break;
 	// when the criteria does not fit into any of the cases this is the default msg
 	default:
