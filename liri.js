@@ -164,6 +164,8 @@ fs.readFile("random.txt", "utf8", function(error, data) {
   
 	// We will then print the contents of data
 	console.log(data);
+	data.split();
+
 
 });
 }

@@ -2,11 +2,12 @@
 
 What is "LiriBot"?
 
-LiriBot is an application that a user can use through a computer terminal, using actions to request information, using different NPM packages(axios, dotenv, moment, and node-spotify-api) that retrieve data from API's with the assistance of nodeJS.
+LiriBot is an application that a user can use through a computer terminal, by using actions to request information, using different NPM packages(axios, dotenv, moment, and node-spotify-api) that retrieve data from API's with the assistance of nodeJS.
 
 
 
 Technical Info:
+
 The NPM packages must be installed on the terminal before the application can run properly. The packages will load onto the package.json file under an object labeled dependencies. In addition, to have access to developmentAPI's you will need to access API keys that you can store on a seprate file within the folder for your application. Then you will need to require the npm packages to the API so they can brought to the browser.
 
 
