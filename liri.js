@@ -4,6 +4,7 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 var axios = require('axios');
 var moment = require('moment');
+var fs = require('fs');
 moment().format();
 
 // capture the command that the user puts in
@@ -39,12 +40,9 @@ switch (action) {
 		//default to Mr. Nobody's movie info
 
 		if (action === 'movie-this') {
-		    userMovie(userSearch);
-			}
-			
-
-		else {
-			userSearch = "Mr+Nobody"
+			userMovie(userSearch);
+		} else {
+			userSearch = 'Mr+Nobody';
 			userMovie(userSearch);
 		}
 		break;
@@ -52,8 +50,8 @@ switch (action) {
 	//case 3 to retrieve info from the Spotify API
 	case 'spotify-this-song':
 		console.log('command: ' + action);
-		console.log('Search: ' + userSearch);
-			// if no artist, track, or album is typed in default to Jhene Aiko
+		// console.log('Search: ' + userSearch);
+		// if no artist, track, or album is typed in default to Jhene Aiko
 		if (!userSearch) {
 			userSearch = 'Jhene Aiko';
 		}
@@ -63,8 +61,7 @@ switch (action) {
 	//case 4 to retrieve info from the Spotify API when it is requested through a Txt file
 	case 'do-what-it-says':
 		console.log('command: ' + action);
-		console.log('Search: ' + userSearch);
-		dowhatitSays(userSearch);
+		dowhatitSays();
 		break;
 	// when the criteria does not fit into any of the cases this is the default msg
 	default:
@@ -73,7 +70,7 @@ switch (action) {
 
 //made functions for each action made by user. will call the function necessary for each case
 
-function userMovie(userSearch) {
+function userMovie() {
 	//inject the users search term in the queryURL
 	// Then run a request with axios to the OMDB API with the movie specified
 	var queryUrl = 'http://www.omdbapi.com/?t=' + userSearch + '&y=&plot=short&apikey=trilogy';
@@ -99,25 +96,19 @@ function concertInfo() {
 	// retrieves the requested data from bands in town API
 	axios.get(queryUrl).then(function(response, data) {
 		console.log('Upcoming concerts for ' + userSearch + ':');
-		console.log("-----------------------------------")
+		console.log('-----------------------------------');
 		//display the name of venue, venue location, and date of event
 
-
 		var bandSearch = response.data;
-		for(i = 0; i < bandSearch.length; i++){
-		console.log(bandSearch[i].venue.name);
-		console.log(bandSearch[i].venue.city);
-		console.log(bandSearch[i].venue.region);
-		//used to moment to format the date of event structure 
-		var concertDate = moment(response.data[i].datetime).format("MM/DD/YYYY hh:00 a")
-		console.log(concertDate);
-		console.log("-----------------------------------")
+		for (i = 0; i < bandSearch.length; i++) {
+			console.log(bandSearch[i].venue.name);
+			console.log(bandSearch[i].venue.city);
+			console.log(bandSearch[i].venue.region);
+			//used to moment to format the date of event structure
+			var concertDate = moment(response.data[i].datetime).format('MM/DD/YYYY hh:00 a');
+			console.log(concertDate);
+			console.log('-----------------------------------');
 		}
-		
-
-		
-
-
 	});
 }
 
@@ -126,47 +117,40 @@ function spotifyInfo(userSearch) {
 		if (err) {
 			return console.log('Error occurred: ' + err);
 		}
-
-		// var spotifyArr = data.tracks.items;
 		var spotifyArr = data.tracks.items;
 		// to go loop through the object on spotify API
-		
-		for (i = 0; i < spotifyArr.length; i++) {
-			console.log("-----------------------------------")
-			//pulling artist
-			console.log("Artists: " + spotifyArr[i].artists[0].name);
-			//pull song title
-			console.log("Song Title: " + spotifyArr[i].name);
-			//pulling album
-			console.log("Album: " + spotifyArr[i].album.name);
-			//pull preview URL
-			console.log("Preview URL: " + spotifyArr[i].preview_url);
-			console.log("-----------------------------------")
-			
-			
-		}
 
-	
+		for (i = 0; i < spotifyArr.length; i++) {
+			console.log('-----------------------------------');
+			//pulling artist
+			console.log('Artists: ' + spotifyArr[i].artists[0].name);
+			//pull song title
+			console.log('Song Title: ' + spotifyArr[i].name);
+			//pulling album
+			console.log('Album: ' + spotifyArr[i].album.name);
+			//pull preview URL
+			console.log('Preview URL: ' + spotifyArr[i].preview_url);
+			console.log('-----------------------------------');
+		}
 	});
 }
 //end of function
 
-function dowhatitSays(userSearch){
+function dowhatitSays() {
 	// This block of code will read from the "random.txt" file.
-// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
-// The code will store the contents of the reading inside the variable "data"
-fs.readFile("random.txt", "utf8", txtFile, function(error, data) {
 
-	// If the code experiences any errors it will log the error to the console.
-	if (error) {
-	  return console.log(error);
-	}
-  
-	// We will then print the contents of data
-	console.log(data);
-	var txtFile = data.split(" ").join(" ");
+	// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+	// The code will store the contents of the reading inside the variable "data"
+	fs.readFile('random.txt', 'utf8', function(error, data) {
+		// If the code experiences any errors it will log the error to the console.
+		if (error) {
+			return console.log(error);
+		}
 
+		// We will then print the contents of data
 
-});
+		var txtFile = data.split(' ').slice(1).join(' ');
+		spotifyInfo(txtFile);
+	});
 }
 //end of function

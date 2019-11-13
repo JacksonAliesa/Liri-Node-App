@@ -4,6 +4,8 @@ What is "LiriBot"?
 
 LiriBot is an application that allows a user to insert a request through a computer terminal, by using actions to request information, using different NPM packages(axios, dotenv, moment, and node-spotify-api) that retrieves data from API's with the assistance of nodeJS.
 
+This application is a fun way and easy way to search some of your favorite artists, their upcoming concerts, and movies. It will provide you some general information with each search. The search results vary depending on which action search you decide on. The three API's you are able to search are spotify, bandsintown, and OMDB. These are popular applications that most people are familiar with. 
+
 
 
 Technical Info:
@@ -26,4 +28,8 @@ For example, if I wanted to search Beyonce using the spotify-this-song action I 
 Technologies Used: 
 -nodeJS
 -javascript
+-API requests
+
+Author + Contributor: 
+Aliesa Jackson
 
