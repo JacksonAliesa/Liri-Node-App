@@ -22,7 +22,7 @@ The insert of "node" is indicating that we are using nodeJS. The document file n
 
 For example, if I wanted to search Beyonce using the spotify-this-song action I would insert...(See Below)
 "node liri.js spotify-this-song beyonce"
-![Screenshot](assets/screenshot1.png)
+![Screenshot](assets/screenshot1.PNG)
 
 
 Technologies Used: 
